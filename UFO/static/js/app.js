@@ -17,18 +17,18 @@ var button = d3.select("#filter-btn");
 
 button.on("click", function() {
     d3.event.preventDefault();
-    tbody.selectAll('*').remove();
+    tbody.selectAll('td').remove();
+
     var dateInput = d3.select("#datetime")
     var textInput = dateInput.property("value")
     var filteredData = tableData.filter(cell => cell.datetime === textInput);
 
-    filteredData.forEach(function(ufoSearch) {
+    filteredData.forEach(function(ufoInfo) {
         var row = tbody.append("tr");
-        Object.entries(ufoSearch).forEach(function([key, value]) {
-            var entry = tbody.append("td");
-            entry.text(value)
+        Object.entries(ufoInfo).forEach(function([key, value]) {
         })
+        columns.forEach(column => row.append("td").text(ufoInfo[column]))
     })
-})
+});
 
-//build table
+
